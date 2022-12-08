@@ -1,45 +1,33 @@
 const mydiv=document.querySelector('#left');
 const colorinput=document.querySelector('input');
+const randombutton =document.querySelector('button');
 
-const rannumber1=Math.floor(Math.random() * 2 );
-const rannumber2=Math.floor(Math.random() * 10 );
-const rannumber3=Math.floor(Math.random() * 10 );
+const hexValues = ['0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F']; 
 
+randombutton.addEventListener('click', changeHex);
+function changeHex() {
+  let hex = '#';
 
-const hash = "#"+rannumber1+rannumber2+rannumber3;
-
-function myFunction2() {
-    mydiv.style.backgroundColor= hash;
+  for(let i = 0; i < 6; i++){
+    const index = Math.floor(Math.random() * hexValues.length)
+    hex += hexValues[index];
   }
-  function myFunction1() {
-    colorinput.textContent = "skdnsk"
+
+  // value.textContent = hex;
+  mydiv.style.backgroundColor = hex;
+}
+
+mydiv.addEventListener('click',changeHex)
+
+colorinput.addEventListener('keydown', (e) => {
+  if(!(hexValues.includes(e.key) || e.key == 'Backspace')) e.preventDefault();
+  if(!e.target.value.startsWith('#')) e.target.value = `#${e.target.value}`;
+  if(e.target.value.length > 2){
+    mydiv.style.backgroundColor = e.target.value + e.key;
   }
-  var button = document.querySelector("button");
-  button.addEventListener("click", myFunction2);
-
-  var input = document.querySelector("input");
-  input.addEventListener("click", myFunction1);
+})
 
 
-//   var button = document.querySelector("button");
-//   button.addEventListener("click", myFunction2);
-//   button.addEventListener("click", myFunction1);
-
-
-
-
-// document.getElementById("random").onclick = function() {myFunction1()};
-// document.querySelector("button").onclick = function() {myFunction2()};
- 
-// mybutton.addEventListener('click', () => {
-//     mydiv.style.backgroundColor= hash;
-//     } );
-
-   
-    // function myFunction1() {
-    //     colorinput.textContent = hash
-    //   }
-    
 
 
   
